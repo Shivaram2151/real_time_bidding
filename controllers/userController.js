@@ -1,8 +1,13 @@
-const { where } = require("sequelize");
 const User = require("../models/User");
 const authService = require("../services/authService");
+function validatePassword(enteredPassword, storedPassword) {
+  console.log("triggerd");
+  console.log(123456789 == 123456789);
+  return enteredPassword == storedPassword;
+}
 
-exports.register = async (res, req) => {
+exports.register = async (req, res) => {
+  console.log(req.body);
   try {
     const { username, password, email } = req.body;
     const user = await User.create({ username, password, email });
@@ -14,24 +19,26 @@ exports.register = async (res, req) => {
   }
 };
 
-exports.login = async (res, req) => {
+exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await User.findOne({ where: { username } });
-    if (!user || !user.validatePassword(password)) {
+    const { dataValues } = await User.findOne({ where: { username } });
+    console.log("get", dataValues.password);
+    if (false || !validatePassword(password, dataValues.password)) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
-    const token = authService.generateToken(user.id, user.role);
-    res.status(200).json({ user, token });
+    const token = authService.generateToken(dataValues.id, dataValues.role);
+    res.status(200).json({ dataValues, token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });
   }
 };
 
-exports.profile = async (res, req) => {
+exports.profile = async (req, res) => {
+  const { id } = req.user;
   try {
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findByPk(id);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }

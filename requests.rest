@@ -1,0 +1,54 @@
+post http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "username" : "shivaram",
+    "password" : "123456789"
+}
+###
+
+post http://localhost:3000/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTcwMDI0NTgsImV4cCI6MTcxNzYwNzI1OH0.CgyqrxKZdEr58nbZ2xel45Lc46L5g-Rja46pB4fCFyI
+Content-Type: application/json
+
+
+###
+
+post http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+    "username" : "shivaram",
+    "password" : "123456789",
+    "email" : "ram@gmail.com"
+}
+
+
+post http://localhost:3000/item/items
+Content-Type: application/json
+
+{
+    "name" : "test",
+    "description" : "test",
+    "startingPrice" : 100,
+    "endTime": "2024-06-01T12:00:00.000Z"
+}
+###
+
+DELETE http://localhost:3000/items/items/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTY5OTU1OTgsImV4cCI6MTcxNzYwMDM5OH0.lEzkiVqti42BrwIUr1_I6EVaodfSa53oQ1-5NM3sszo
+
+###
+
+post http://localhost:3000/bids/items/4/bids
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTY5OTU1OTgsImV4cCI6MTcxNzYwMDM5OH0.lEzkiVqti42BrwIUr1_I6EVaodfSa53oQ1-5NM3sszo
+
+
+{
+    "bid_amount" : 100
+}
+
+###
+
+get http://localhost:3000/bids/items/4/bids
