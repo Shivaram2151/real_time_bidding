@@ -11,9 +11,10 @@ const authService = {
   verifyToken: (token) => {
     try {
       console.log("trigerred verfiy token");
+      console.log(token);
       return jwt.verify(token, config.jwtSecret);
     } catch (error) {
-      throw new Error("Invalid token" + error);
+      throw new Error("Invalid token " + error);
     }
   },
 };

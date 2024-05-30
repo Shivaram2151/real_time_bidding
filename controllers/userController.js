@@ -1,8 +1,6 @@
 const User = require("../models/User");
 const authService = require("../services/authService");
 function validatePassword(enteredPassword, storedPassword) {
-  console.log("triggerd");
-  console.log(123456789 == 123456789);
   return enteredPassword == storedPassword;
 }
 
@@ -23,7 +21,6 @@ exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const { dataValues } = await User.findOne({ where: { username } });
-    console.log("get", dataValues.password);
     if (false || !validatePassword(password, dataValues.password)) {
       return res.status(401).json({ error: "Invalid credentials" });
     }

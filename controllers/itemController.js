@@ -39,20 +39,6 @@ exports.createItem = async (req, res) => {
   }
 };
 
-// exports.getAllItems = async (req, res) => {
-//   try {
-//     const page = parseInt(req.query.page) || 1;
-//     const limit = parseInt(req.query.limit) || 10;
-//     const offset = (page - 1) * limit;
-
-//     const items = await Item.findAll();
-//     res.status(200).json(items);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
-
 exports.getAllItems = async (req, res) => {
   const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
   const limit = parseInt(req.query.limit) || 10; // Default limit to 10 items per page
