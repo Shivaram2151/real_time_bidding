@@ -23,6 +23,7 @@ This project aims to create a comprehensive RESTful API for a real-time bidding 
 
 4. Start the Application:
    Use command : npm run dev
+   Test command : npm test
 
 ## API Endpoints:
 
