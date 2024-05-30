@@ -5,24 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bid on Item</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+            max-height: 150px;
+        }
+
+        .card h1 {
+            font-size: 24px;
+            margin: 8px 0;
+        }
+
+        .card p {
+            margin: 4px 0;
+        }
+
+        .card .price {
+            font-size: 20px;
+            color: #2a9d8f;
+        }
+
+        .card .created-at {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .bid-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
     <h1>Bid on Item</h1>
-    <form id="bidForm">
+    <div id="connectionStatus">Disconnected</div>
+    <div class="card" id="itemCard" style="display: none;">
+        <img id="itemImage" src="" alt="Item Image">
+        <h1 id="itemName"></h1>
+        <p id="itemDescription"></p>
+        <p class="price">Starting Price: $<span id="startingPrice"></span></p>
+        <p class="price">Current Bid: $<span id="currentBid"></span></p>
+        <p class="created-at">Created At: <span id="createdAt"></span></p>
+        <p class="price">Highest Bidder: <span id="highestBidder"></span></p>
+    </div>
+    <form id="bidForm" style="display: none;">
         <label for="bidAmount">Bid Amount:</label>
         <input type="number" id="bidAmount" name="bidAmount" step="0.01" required>
         <button type="submit">Place Bid</button>
     </form>
-
-    <script src="server.js"></script>
-    <script>
-        document.getElementById('bidForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission
-            const bidAmount = document.getElementById('bidAmount').value;
-            placeBid(bidAmount);
-        });
-    </script>
+    <div id="items"></div>
+    <script src="client.js"></script>
 </body>
 
 </html>
